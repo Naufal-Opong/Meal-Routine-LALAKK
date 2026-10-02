@@ -1,0 +1,20 @@
+DEPLOYMENT CHECKLIST — MEAL ROUTINE LALAKK
+
+[ ] Upload index.html
+[ ] Upload manifest.json
+[ ] Upload sw.js
+[ ] Upload .nojekyll
+[ ] Upload folder icons/
+[ ] Enable GitHub Pages
+[ ] Open the HTTPS URL
+[ ] Test onboarding
+[ ] Test notification permission
+[ ] Test schedule editing
+[ ] Test mark-as-done
+[ ] Test +10m
+[ ] Test install/Add to Home Screen
+[ ] Test after closing/reopening the app
+[ ] Test on Android and desktop separately
+
+IMPORTANT:
+Do not assume background scheduled notifications are guaranteed by a service worker.

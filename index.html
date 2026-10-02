@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ff7892">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<title>Meal Routine Lalakk ♡</title>
+<style>
+:root{--bg:#fff1f3;--hero1:#ffd9df;--hero2:#ffc5cf;--pink:#ff7892;--dark:#64192b;--text:#5c1727;--muted:#a45b6b;--soft:#ffe7ec;--line:#ffd0d9;--white:#fffafb;--shadow:0 14px 35px rgba(196,75,103,.12)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:"Trebuchet MS",system-ui,sans-serif;overflow-x:hidden}
+body:before,body:after{position:fixed;z-index:-1;pointer-events:none;color:#ffafbd;opacity:.22}
+body:before{content:"♡";font-size:170px;left:-50px;top:120px;transform:rotate(-15deg)}body:after{content:"♡";font-size:180px;right:-45px;bottom:25px;transform:rotate(12deg)}
+.app{width:min(900px,100%);margin:auto;padding:26px 20px 70px;position:relative}.floating-hearts{position:fixed;inset:0;pointer-events:none;z-index:-1;color:#ff8fa5}.floating-hearts span{position:absolute;font-size:20px;opacity:.55;animation:float 5s ease-in-out infinite}.floating-hearts span:nth-child(1){left:7%;top:17%}.floating-hearts span:nth-child(2){right:9%;top:23%;animation-delay:1s}.floating-hearts span:nth-child(3){left:13%;bottom:19%;animation-delay:2s}.floating-hearts span:nth-child(4){right:15%;bottom:31%;animation-delay:3s}@keyframes float{50%{transform:translateY(-9px) rotate(5deg)}}
+.hero{position:relative;min-height:315px;overflow:hidden;border:2px solid #ff91a6;border-radius:34px;padding:29px 30px 25px;background:linear-gradient(135deg,var(--hero1),var(--hero2) 55%,#ffdfe4);box-shadow:0 20px 50px rgba(224,91,119,.17)}
+.hero .mini-heart{position:absolute;color:#ed7189;font-size:25px}.h1{left:30px;top:20px}.h2{left:43%;top:37px;font-size:18px!important}.h3{right:29%;top:22px}.h4{right:13%;top:55px;font-size:17px!important}
+.hero-content{position:relative;z-index:3;width:66%}.brand{font-size:17px;font-weight:900;color:#d04b66;margin-top:2px}.brand span{color:#ec7188}.title{font-size:37px;line-height:1.08;font-weight:900;margin:10px 0 13px;color:#671b2d}.date{font-size:16px;color:#a34458}
+.bunny-wrap{position:absolute;right:28px;top:18px;width:245px;height:205px;z-index:2}.bunny-wrap svg{width:100%;height:100%;filter:drop-shadow(0 9px 7px rgba(123,45,61,.12))}
+.progress-wrap{position:absolute;left:30px;right:30px;bottom:24px;z-index:4;padding:15px 17px;border:1px solid rgba(255,255,255,.9);border-radius:20px;background:rgba(255,250,251,.55)}
+.progress-info{display:flex;justify-content:space-between;font-size:13px;font-weight:900;color:#91364c;margin-bottom:9px}.bar{height:10px;border-radius:99px;background:#ffeaf0;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#ff6f8a,#ff9eb0);transition:.4s}
+.section{margin:29px 2px 14px;font-size:21px;font-weight:900;display:flex;gap:7px;align-items:center}.section:after{content:"♡";color:#ff7892}
+.timeline{display:flex;flex-direction:column;gap:13px}.meal{display:flex;align-items:center;gap:14px;padding:16px 17px;background:rgba(255,251,252,.94);border:1px solid var(--line);border-radius:23px;box-shadow:var(--shadow);position:relative}.meal:after{content:"♡";position:absolute;right:12px;bottom:5px;color:#ffc0ca;font-size:15px}.meal.done{opacity:.7}.icon{width:52px;height:52px;border-radius:17px;background:var(--soft);display:grid;place-items:center;font-size:25px;flex:none}.meal-main{flex:1;min-width:0}.meal-time{font-size:21px;font-weight:900}.meal-name{font-weight:900;margin-top:2px}.meal-note{font-size:12px;color:var(--muted);margin-top:4px}.meal-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.btn{border:1px solid #ffc0cd;background:#fff0f3;color:#d44d69;border-radius:15px;padding:10px 14px;font-weight:900;cursor:pointer}.btn:hover{background:#ffe1e8}.btn.donebtn{background:#ffe4ea;color:#c6435e}
+.next{margin-top:18px;padding:16px;background:var(--white);border:1px solid var(--line);border-radius:21px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow)}.next small{color:var(--muted)}.count{font-weight:900;color:#dc5570}
+.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:14px}.action{padding:15px;border-radius:18px;border:1px solid var(--line);background:var(--white);color:#a23d55;font-weight:900;cursor:pointer;box-shadow:var(--shadow)}
+.status{margin-top:14px;padding:14px 16px;border:1px solid var(--line);background:#fffafb;border-radius:18px;display:flex;align-items:center;gap:11px;box-shadow:var(--shadow)}.status-dot{width:10px;height:10px;border-radius:50%;background:#ffbdc8}.status-dot.on{background:#4ac28a}.status-text{flex:1;font-size:13px}.status-text b{display:block;font-size:14px;margin-bottom:2px}
+.modal{position:fixed;inset:0;background:rgba(72,18,32,.36);display:none;align-items:flex-end;justify-content:center;padding:12px;z-index:20}.modal.show{display:flex}.sheet{width:min(720px,100%);background:#fffafb;border:1px solid var(--line);border-radius:28px;padding:22px;max-height:90vh;overflow:auto}.sheet h2{margin-top:0}label{display:block;font-size:13px;font-weight:900;margin:12px 0 6px}input{width:100%;padding:13px;border:1px solid #ffcbd5;border-radius:13px;font-size:16px;background:#fff}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sheet-actions{display:flex;gap:10px;margin-top:18px}.primary{background:var(--pink);color:white}.secondary{background:#ffe8ed}
+.onboarding{position:fixed;inset:0;background:linear-gradient(160deg,#fff1f3,#ffdce3);z-index:50;display:none;align-items:center;justify-content:center;padding:20px}.onboarding.show{display:flex}.onboard-card{width:min(470px,100%);background:#fffafb;border:2px solid #ffb1bf;border-radius:32px;padding:30px;text-align:center;box-shadow:0 25px 60px rgba(170,58,84,.18)}.onboard-bunny{width:150px;height:120px;margin:auto}.onboard-card h1{color:#681a2d;margin:8px 0}.onboard-card p{color:#9c5263;line-height:1.55}.start{width:100%;padding:15px;border:0;border-radius:17px;background:#ff7892;color:#fff;font-weight:900;font-size:16px;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,140px);background:#641a2c;color:white;padding:13px 17px;border-radius:15px;transition:.3s;z-index:60;box-shadow:0 12px 35px rgba(0,0,0,.2)}.toast.show{transform:translate(-50%,0)}
+.install{display:none}.install.show{display:block}
+@media(max-width:650px){.app{padding:14px 12px 45px}.hero{min-height:340px;padding:23px 18px;border-radius:27px}.hero-content{width:100%;padding-right:82px}.brand{font-size:14px}.title{font-size:28px}.date{font-size:14px}.bunny-wrap{width:165px;height:145px;right:-3px;top:8px}.progress-wrap{left:18px;right:18px;bottom:19px}.meal{padding:14px 12px}.icon{width:45px;height:45px}.meal-time{font-size:18px}.meal-actions{flex-direction:column}.btn{padding:9px 10px}.actions{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="floating-hearts"><span>♡</span><span>♡</span><span>♡</span><span>♡</span></div>
+
+<div class="onboarding" id="onboarding">
+ <div class="onboard-card">
+  <div class="onboard-bunny">
+   <svg viewBox="0 0 300 245" width="150" height="120" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#7c3142" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+     <path d="M88 65C62 28 78 7 103 36L125 65" fill="#fff9f8"/><path d="M174 64C199 25 188 7 165 35L144 65" fill="#fff9f8"/>
+     <ellipse cx="137" cy="107" rx="76" ry="72" fill="#fff9f8"/><ellipse cx="112" cy="104" rx="8" ry="11" fill="#5c2733" stroke="none"/><ellipse cx="163" cy="104" rx="8" ry="11" fill="#5c2733" stroke="none"/>
+     <path d="M132 116Q138 121 144 116" fill="none"/><circle cx="95" cy="119" r="13" fill="#ffb5c2" stroke="none"/><circle cx="181" cy="119" r="13" fill="#ffb5c2" stroke="none"/>
+     <path d="M84 160Q137 202 191 160" fill="#fff9f8"/><path d="M87 166C62 184 63 213 93 218C108 221 122 211 135 200C148 211 163 221 179 218C208 213 210 184 185 166Z" fill="#ff8fa5"/>
+    </g>
+   </svg>
+  </div>
+  <h1>Meal Routine Lalakk ♡</h1>
+  <p>Ini bukan aplikasi diet. Ini pengingat kecil supaya kamu tidak terus lupa merawat dirimu sendiri.</p>
+  <button class="start" onclick="finishOnboarding()">Mulai rutinitasku ♡</button>
+ </div>
+</div>
+
+<div class="app">
+<section class="hero">
+ <span class="mini-heart h1">♡</span><span class="mini-heart h2">♡</span><span class="mini-heart h3">♡</span><span class="mini-heart h4">♡</span>
+ <div class="hero-content"><div class="brand">MEAL ROUTINE LALAKK <span>♡</span></div><div class="title">Sayangi dirimu karena aku sayang kamu <span style="font-size:.75em">♡</span></div><div class="date" id="date"></div></div>
+ <div class="bunny-wrap"><svg viewBox="0 0 300 245" xmlns="http://www.w3.org/2000/svg"><g stroke="#7c3142" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M88 65C62 28 78 7 103 36L125 65" fill="#fff9f8"/><path d="M174 64C199 25 188 7 165 35L144 65" fill="#fff9f8"/><ellipse cx="137" cy="107" rx="76" ry="72" fill="#fff9f8"/><ellipse cx="112" cy="104" rx="8" ry="11" fill="#5c2733" stroke="none"/><ellipse cx="163" cy="104" rx="8" ry="11" fill="#5c2733" stroke="none"/><path d="M132 116Q138 121 144 116" fill="none"/><circle cx="95" cy="119" r="13" fill="#ffb5c2" stroke="none"/><circle cx="181" cy="119" r="13" fill="#ffb5c2" stroke="none"/><path d="M84 160Q137 202 191 160" fill="#fff9f8"/><path d="M87 166C62 184 63 213 93 218C108 221 122 211 135 200C148 211 163 221 179 218C208 213 210 184 185 166Z" fill="#ff8fa5"/><path d="M115 184Q137 164 159 184L137 211Z" fill="#ff6f8c" stroke="none"/></g><g fill="#ff718c" stroke="none"><path d="M218 43c-8-14 13-24 17-8c4-16 25-6 17 8c-5 9-17 18-17 18s-12-9-17-18z"/><path d="M45 98c-6-11 10-19 13-6c4-13 20-5 14 6c-4 7-13 14-13 14s-10-7-14-14z"/></g></svg></div>
+ <div class="progress-wrap"><div class="progress-info"><span>Rutinitas hari ini</span><b id="progressText">0 / 5</b></div><div class="bar"><div class="fill" id="fill"></div></div></div>
+</section>
+
+<div class="section">Jadwal hari ini</div>
+<div class="timeline" id="timeline"></div>
+
+<div class="next"><div><small>Jadwal berikutnya</small><div id="nextMeal" style="font-weight:900;margin-top:3px">—</div></div><div class="count" id="countdown">—</div></div>
+
+<div class="status"><div class="status-dot" id="notifDot"></div><div class="status-text"><b id="notifTitle">Notifikasi belum aktif</b><span id="notifDesc">Aktifkan agar pengingat bisa muncul saat waktunya makan.</span></div><button class="btn" onclick="requestNotification()">Aktifkan</button></div>
+
+<div class="actions"><button class="action" onclick="openSettings()">⚙️ Atur jadwal</button><button class="action" onclick="showInstall()">📱 Pasang aplikasi</button><button class="action" onclick="resetToday()">↻ Reset hari ini</button></div>
+</div>
+
+<div class="modal" id="modal"><div class="sheet"><h2>Atur jadwal makan ♡</h2><p style="color:#a45b6b;font-size:13px">Atur waktu yang paling cocok dengan rutinitasmu.</p><div id="form"></div><div class="sheet-actions"><button class="btn secondary" onclick="closeSettings()">Batal</button><button class="btn primary" onclick="saveSettings()">Simpan</button></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const DEFAULTS=[
+{id:1,time:"06:30",name:"Sarapan",icon:"🌅",note:"Mulai hari dengan energi yang baik ♡"},
+{id:2,time:"10:00",name:"Camilan",icon:"🍎",note:"Jangan lupa isi energi lagi ♡"},
+{id:3,time:"12:30",name:"Makan siang",icon:"🍱",note:"Waktunya makan yang cukup ♡"},
+{id:4,time:"16:00",name:"Camilan sore",icon:"🥛",note:"Sedikit camilan untuk tetap fokus ♡"},
+{id:5,time:"19:00",name:"Makan malam",icon:"🌙",note:"Akhiri hari dengan makan yang cukup ♡"}];
+let schedule=JSON.parse(localStorage.getItem("mealSchedule")||"null")||DEFAULTS;
+const today=new Date().toISOString().slice(0,10);
+let state=JSON.parse(localStorage.getItem("mealState")||"{}");
+if(state.date!==today){state={date:today,done:{},notified:{}};saveState()}
+function saveState(){localStorage.setItem("mealState",JSON.stringify(state))}
+function saveSchedule(){localStorage.setItem("mealSchedule",JSON.stringify(schedule))}
+document.getElementById("date").textContent=new Intl.DateTimeFormat("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(new Date());
+
+function render(){schedule.sort((a,b)=>a.time.localeCompare(b.time));const t=document.getElementById("timeline");t.innerHTML="";schedule.forEach(m=>{const d=!!state.done[m.id],e=document.createElement("div");e.className="meal"+(d?" done":"");e.innerHTML=`<div class="icon">${m.icon}</div><div class="meal-main"><div class="meal-time">${m.time}</div><div class="meal-name">${m.name}</div><div class="meal-note">${d?"Sudah dicatat ✓":m.note}</div></div><div class="meal-actions"><button class="btn ${d?"donebtn":""}" onclick="toggleDone(${m.id})">${d?"✓ Selesai":"Tandai"}</button>${d?"":`<button class="btn" onclick="snooze(${m.id})">+10m</button>`}</div>`;t.appendChild(e)});const n=schedule.filter(m=>state.done[m.id]).length;document.getElementById("progressText").textContent=`${n} / ${schedule.length}`;document.getElementById("fill").style.width=(n/schedule.length*100)+"%";updateNext()}
+function toggleDone(id){state.done[id]=!state.done[id];saveState();render();toast(state.done[id]?"Makan dicatat ✓":"Catatan dibatalkan")}
+function snooze(id){toast("Pengingat ditunda 10 menit ♡")}
+function updateNext(){const now=new Date(),min=now.getHours()*60+now.getMinutes()+now.getSeconds()/60,next=schedule.find(m=>{const [h,x]=m.time.split(":").map(Number);return h*60+x>min&&!state.done[m.id]});if(!next){document.getElementById("nextMeal").textContent="Semua jadwal hari ini selesai ♡";document.getElementById("countdown").textContent="✓";return}const [h,x]=next.time.split(":").map(Number),diff=h*60+x-min;document.getElementById("nextMeal").textContent=`${next.icon} ${next.name} • ${next.time}`;document.getElementById("countdown").textContent=diff<60?`${Math.max(1,Math.ceil(diff))} mnt`:`${Math.floor(diff/60)}j ${Math.ceil(diff%60)}m`}
+function checkReminders(){const now=new Date(),hm=String(now.getHours()).padStart(2,"0")+":"+String(now.getMinutes()).padStart(2,"0");schedule.forEach(m=>{if(m.time===hm&&!state.done[m.id]&&!state.notified[m.id]){state.notified[m.id]=true;saveState();toast(`🍽️ ${m.name} — sudah waktunya makan ♡`);if("Notification"in window&&Notification.permission==="granted")new Notification(`♡ ${m.name}`,{body:"Sudah waktunya makan. Sayangi dirimu dan makan dulu."})}})}
+async function requestNotification(){if(!("Notification"in window)){toast("Browser ini tidak mendukung notifikasi.");return}const p=await Notification.requestPermission();updateNotifUI();toast(p==="granted"?"Notifikasi aktif ✓":"Izin notifikasi belum diberikan")}
+function updateNotifUI(){const ok=("Notification"in window&&Notification.permission==="granted");document.getElementById("notifDot").classList.toggle("on",ok);document.getElementById("notifTitle").textContent=ok?"Notifikasi aktif ♡":"Notifikasi belum aktif";document.getElementById("notifDesc").textContent=ok?"Pengingat makan siap digunakan.":"Aktifkan agar pengingat bisa muncul saat waktunya makan."}
+function openSettings(){const f=document.getElementById("form");f.innerHTML="";schedule.forEach(m=>f.innerHTML+=`<div class="row"><div><label>Waktu</label><input class="stime" type="time" value="${m.time}"></div><div><label>Nama</label><input class="sname" value="${m.name}"></div></div>`);document.getElementById("modal").classList.add("show")}
+function closeSettings(){document.getElementById("modal").classList.remove("show")}
+function saveSettings(){const ts=[...document.querySelectorAll(".stime")],ns=[...document.querySelectorAll(".sname")];schedule=schedule.map((m,i)=>({...m,time:ts[i].value,name:ns[i].value.trim()||m.name}));saveSchedule();closeSettings();render();toast("Jadwal disimpan ✓")}
+function resetToday(){if(confirm("Reset semua catatan makan hari ini?")){state={date:today,done:{},notified:{}};saveState();render();toast("Hari ini direset")}}
+function finishOnboarding(){localStorage.setItem("mealOnboarded","1");document.getElementById("onboarding").classList.remove("show");requestNotification()}
+function showInstall(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null})}else toast("Untuk memasang aplikasi, gunakan menu Install/Add to Home Screen di browser ini.")}
+let deferredPrompt=null;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e});
+function toast(msg){const e=document.getElementById("toast");e.textContent=msg;e.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>e.classList.remove("show"),2500)}
+window.addEventListener("load",()=>{if(!localStorage.getItem("mealOnboarded"))document.getElementById("onboarding").classList.add("show");updateNotifUI()});
+setInterval(checkReminders,1000);setInterval(updateNext,1000);render();
+if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body>
+</html>
